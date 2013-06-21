@@ -126,6 +126,7 @@ sub _initialize {
     my $chunk_size = delete $args->{_chunk_size} || 65536;
 
     my $merge = delete $args->{merge};
+    $self->{diag_merge} = delete $args->{diag_merge};
     my ( $pid, $err, $sel );
 
     if ( my $setup = delete $args->{setup} ) {
@@ -252,6 +253,11 @@ sub _next {
                         }
                         elsif ( $fh == $err ) {
                             print STDERR $chunk;    # echo STDERR
+                            if ($self->{diag_merge}) {
+                                $chunk =~ s/^/### /mg;
+                                push @buf, split /\n/, $chunk;
+                                return shift @buf if @buf;
+                            }
                         }
                         else {
                             $chunk   = $partial . $chunk;

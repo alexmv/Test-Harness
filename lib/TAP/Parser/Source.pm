@@ -161,6 +161,13 @@ sub merge {
     return $self;
 }
 
+sub diag_merge {
+    my $self = shift;
+    return $self->{diag_merge} unless @_;
+    $self->{diag_merge} = shift;
+    return $self;
+}
+
 sub switches {
     my $self = shift;
     return $self->{switches} unless @_;

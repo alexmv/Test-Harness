@@ -252,6 +252,7 @@ sub _create_iterator {
     return TAP::Parser::Iterator::Process->new(
         {   command  => $command,
             merge    => $source->merge,
+            diag_merge => $source->diag_merge,
             setup    => $setup,
             teardown => $teardown,
         }

@@ -74,6 +74,7 @@ BEGIN {
         switches          => sub { shift; shift },
         exec              => sub { shift; shift },
         merge             => sub { shift; shift },
+        diag_merge        => sub { shift; shift },
         aggregator_class  => sub { shift; shift },
         formatter_class   => sub { shift; shift },
         multiplexer_class => sub { shift; shift },
@@ -740,6 +741,7 @@ sub _get_parser_args {
     $args{switches}    = \@switches;
     $args{spool}       = $self->_open_spool($test_prog);
     $args{merge}       = $self->merge;
+    $args{diag_merge}  = $self->diag_merge;
     $args{ignore_exit} = $self->ignore_exit;
     $args{version}     = $self->version if $self->version;
 

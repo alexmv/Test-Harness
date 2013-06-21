@@ -428,6 +428,7 @@ sub make_result           { shift->result_factory_class->make_result(@_); }
         my $sources     = delete $args{sources};
         my $exec        = delete $args{exec};
         my $merge       = delete $args{merge};
+        my $diag_merge  = delete $args{diag_merge};
         my $spool       = delete $args{spool};
         my $switches    = delete $args{switches};
         my $ignore_exit = delete $args{ignore_exit};
@@ -464,7 +465,9 @@ sub make_result           { shift->result_factory_class->make_result(@_); }
 
         if ( $source->raw ) {
             my $src_factory = $self->make_iterator_factory($sources);
-            $source->merge($merge)->switches($switches)
+            $source->merge($merge)
+              ->diag_merge($diag_merge)
+              ->switches($switches)
               ->test_args($test_args);
             $iterator = $src_factory->make_iterator($source);
         }

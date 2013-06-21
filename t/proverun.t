@@ -44,6 +44,7 @@ BEGIN {
                     [   'new',
                         'TAP::Parser::Iterator::Process',
                         {   merge   => undef,
+                            diag_merge => undef,
                             command => [
                                 'PERL',
                                 $ENV{HARNESS_PERL_SWITCHES}
